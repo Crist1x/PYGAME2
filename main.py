@@ -23,6 +23,19 @@ class Board:
         self.top = top
         self.cell_size = cell_size
 
+    def get_click(self, mouse_pos):
+        cell = self.get_cell(mouse_pos)
+        self.on_click(cell)
+
+    def get_cell(self, mouse_pos):
+        x, y = (mouse_pos[0] - self.left) // self.cell_size, \
+        (mouse_pos[1] - self.top) // self.cell_size
+        if self.width >= x + 1 > 0 and self.height >= y + 1 > 0:
+            return x + 1, y + 1
+
+    def on_click(self, cell_coords):
+        print("Была выбрана ячейка:", cell_coords)
+
 
 def main():
     pygame.init()
@@ -38,6 +51,8 @@ def main():
             # при закрытии окна
             if event.type == pygame.QUIT:
                 running = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                board.get_click(event.pos)
             # РЕАКЦИЯ НА ОСТАЛЬНЫЕ СОБЫТИЯ
             # ...
         # отрисовка и изменение свойств объектов
