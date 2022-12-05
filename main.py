@@ -17,6 +17,11 @@ class Board:
                 pygame.draw.rect(screen, pygame.Color(255, 255, 255), (x * self.cell_size + self.left,
                                  y * self.cell_size + self.top,
                                  self.cell_size, self.cell_size), 1)
+    
+    def set_view(self, left, top, cell_size):
+        self.left = left
+        self.top = top
+        self.cell_size = cell_size
 
 
 def main():
